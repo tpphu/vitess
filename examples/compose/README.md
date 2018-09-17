@@ -67,6 +67,7 @@ vitess/examples/compose$ docker-compose rm
 
 ```
 docker ps -q | paste -sd " " -
+./lvtctl.sh ApplyVSchema -vschema "$(cat vschema.json)" test_keyspace
 ./lvtctl.sh ListAllTablets test
 ./lvtctl.sh InitShardMaster -force test_keyspace/0 test-0000000001
 ./lvtctl.sh InitShardMaster -force test_keyspace/-80 test-0000000002
