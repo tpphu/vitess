@@ -108,7 +108,6 @@ services:
       - GRPC_PORT
       - CELL
       - KEYSPACE
-      - SHARD=-80
     command: ["sh", "-c", "/script/vttablet-up.sh 2"]
     depends_on:
       - vtctld
@@ -126,7 +125,6 @@ services:
       - GRPC_PORT
       - CELL
       - KEYSPACE
-      - SHARD=80-
     command: ["sh", "-c", "/script/vttablet-up.sh 3"]
     depends_on:
       - vtctld

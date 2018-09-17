@@ -63,3 +63,12 @@ If the cluster gets in a bad state, you most likely will have to stop and kill t
 vitess/examples/compose$ docker-compose kill
 vitess/examples/compose$ docker-compose rm
 ```
+
+
+```
+docker ps -q | paste -sd " " -
+./lvtctl.sh ListAllTablets test
+./lvtctl.sh InitShardMaster -force test_keyspace/0 test-0000000001
+./lvtctl.sh InitShardMaster -force test_keyspace/-80 test-0000000002
+./lvtctl.sh InitShardMaster -force test_keyspace/80- test-0000000003
+```
