@@ -5,13 +5,15 @@ import (
 	"fmt"
 	"math/rand"
 	"os"
+	"strconv"
 	"time"
 
 	"vitess.io/vitess/go/vt/vitessdriver"
 )
 
 var (
-	server = flag.String("server", "localhost:15991", "vtgate server to connect to")
+	server        = flag.String("server", "localhost:15991", "vtgate server to connect to")
+	autoincrement = flag.String("incr", "0", "Default increment")
 )
 
 func main() {
@@ -29,6 +31,7 @@ func main() {
 	// Insert some like_ratings on random pages.
 	fmt.Println("Inserting into master...")
 	go func() {
+		incr, err := strconv.Atoi(*autoincrement)
 		for {
 			tx, err := db.Begin()
 			if err != nil {
@@ -40,8 +43,9 @@ func main() {
 			is_delete := 0
 			create_time := time.Now().Unix()
 			update_time := time.Now().Unix()
-			if _, err := tx.Exec("INSERT INTO like_ratings (rating_id,user_id,is_delete,create_time,update_time) VALUES (?,?,?,?,?)",
-				rating_id, user_id, is_delete, create_time, update_time); err != nil {
+			incr++
+			if _, err := tx.Exec("INSERT INTO like_ratings (id, rating_id,user_id,is_delete,create_time,update_time) VALUES (?,?,?,?,?,?)",
+				incr, rating_id, user_id, is_delete, create_time, update_time); err != nil {
 				fmt.Printf("exec failed: %v\n", err)
 				os.Exit(1)
 			}
