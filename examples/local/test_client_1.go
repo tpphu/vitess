@@ -31,7 +31,7 @@ func main() {
 	// Insert some like_ratings on random pages.
 	fmt.Println("Inserting into master...")
 	go func() {
-		incr, err := strconv.Atoi(*autoincrement)
+		incr, _ := strconv.Atoi(*autoincrement)
 		for {
 			tx, err := db.Begin()
 			if err != nil {
