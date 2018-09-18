@@ -49,6 +49,7 @@ func main() {
 				fmt.Printf("commit failed: %v\n", err)
 				os.Exit(1)
 			}
+			time.Sleep(2 * time.Millisecond)
 		}
 	}()
 
