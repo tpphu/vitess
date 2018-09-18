@@ -29,6 +29,14 @@
           "name": "hash"
         }
       ]
+    },
+    "products": {
+      "column_vindexes": [
+        {
+          "column": "id",
+          "name": "hash"
+        }
+      ]
     }
   }
 }
