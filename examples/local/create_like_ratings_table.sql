@@ -1,0 +1,13 @@
+CREATE TABLE `like_ratings` (
+	`id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`rating_id` BIGINT(20) UNSIGNED NULL DEFAULT NULL,
+	`user_id` BIGINT(20) UNSIGNED NOT NULL,
+	`is_delete` TINYINT(1) UNSIGNED NULL DEFAULT '0',
+	`create_time` INT(11) UNSIGNED NOT NULL,
+	`update_time` INT(11) UNSIGNED NOT NULL,
+	PRIMARY KEY (`id`),
+	INDEX `IDX_RATING_ID` (`rating_id`)
+)
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB
+

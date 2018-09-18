@@ -36,7 +36,7 @@ import (
 )
 
 var (
-	server = flag.String("server", "", "vtgate server to connect to")
+	server = flag.String("server", "localhost:15991", "vtgate server to connect to")
 )
 
 func main() {
@@ -104,7 +104,7 @@ func main() {
 	}
 	defer dbr.Close()
 
-	rows, err = dbr.Query("SELECT page, time_created_ns, message FROM messages")
+	rows, err = dbr.Query("SELECT page, time_created_ns, message FROM messages WHERE page=32")
 	if err != nil {
 		fmt.Printf("query failed: %v\n", err)
 		os.Exit(1)
