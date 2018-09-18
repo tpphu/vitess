@@ -10,10 +10,12 @@ docker run -t -d -p 15000:15000 -p 15100:15100 -p 15101:15101 -p 15102:15102 -p 
 docker exec -it c925326640a9 bash
 
 # Copy
-docker cp ./client.py 7d27f8c34a84:/vt/src/vitess.io/vitess/examples/local/
+docker cp ./client.py 04c613302de1:/vt/src/vitess.io/vitess/examples/local/
 
 docker cp ./test_client_1.go 04c613302de1:/vt/src/vitess.io/vitess/examples/local/
-docker cp ./create_like_ratings_table.sql 7d27f8c34a84:/vt/src/vitess.io/vitess/examples/local/
+docker cp ./create_like_ratings_table.sql 04c613302de1:/vt/src/vitess.io/vitess/examples/local/
+
+docker cp ./vschema.json 04c613302de1:/vt/src/vitess.io/vitess/examples/local/
 ```
 
 # Thuc thi cac cau lenh can thiet
@@ -55,6 +57,11 @@ while true; do ./client.sh; sleep 1; done
 # Chu y la phai co cai keyspace:
 ./lvtctl.sh ApplySchema -sql "$(cat create_like_ratings_table.sql)" test_keyspace
 
+./lvtctl.sh ApplySchema -sql "ALTER TABLE messages ADD COLUMN `a_test_column` SMALLINT(6) NOT NULL DEFAULT 0 AFTER `message`" test_keyspace
+
+
+./lvtctl.sh ApplyVSchema -vschema "$(cat vschema.json)" test_keyspace
+
 ./lvtctl.sh ListAllTablets test
 
 # ! KHONG work
@@ -84,6 +91,10 @@ show tables;
 select * from user as u where u.user = 'vt_appdebug' \G;
 
 select Host, User, Select_priv as SEL, Insert_priv as INS, Update_priv as UP, Delete_priv as DEL, Create_priv as `CRE`, Drop_priv as `DR`, Reload_priv as `REL`, Shutdown_priv as `SD`, Process_priv as `PRO`, File_priv as `File`, Grant_priv as `Grant`, References_priv as `Ref`, Index_priv as `IDX`, Alter_priv as `ALT`, Show_db_priv as SHOWDB, Super_priv as `Super`, Create_tmp_table_priv as CRETmpTbl, Lock_tables_priv as `Lock`, Execute_priv as `Exec`, Repl_slave_priv as `Relp`, Create_view_priv as CREView, Show_view_priv as SView, Create_routine_priv as CRERT, Alter_routine_priv as  ALTRT, Create_user_priv as CREUser, Event_priv as `Event`, Trigger_priv as `Trigger`, Create_tablespace_priv as CRETblSpc  from user as u where u.user LIKE 'vt%'
+
+
+ALTER TABLE messages
+ADD COLUMN `a_test_column` SMALLINT(6) NOT NULL DEFAULT 0 AFTER `message`
 ```
 
 

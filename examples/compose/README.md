@@ -33,7 +33,7 @@ vitess/examples/compose$ ./client.sh
 ### Connect to vgate and run queries
 vtgate responds to the MySQL protocol, so we can connect to it using the default MySQL client command line.
 ```
-$ mysql --port=15306 --host=127.0.0.1
+$   
 ```
 
 

@@ -14,8 +14,16 @@
         }
       ]
     },
-    "like_st": {
-      "like_ratings": [
+    "ratings": {
+      "column_vindexes": [
+        {
+          "column": "id",
+          "name": "hash"
+        }
+      ]
+    },
+    "like_ratings": {
+      "column_vindexes": [
         {
           "column": "id",
           "name": "hash"
