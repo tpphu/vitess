@@ -53,6 +53,10 @@ func main() {
 		}
 	}()
 
+	for {
+		time.Sleep(2 * time.Millisecond)
+	}
+
 	// Read it back from the master.
 
 	/*
