@@ -13,6 +13,14 @@
           "name": "hash"
         }
       ]
+    },
+    "like_st": {
+      "like_ratings": [
+        {
+          "column": "id",
+          "name": "hash"
+        }
+      ]
     }
   }
 }

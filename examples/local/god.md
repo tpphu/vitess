@@ -11,7 +11,8 @@ docker exec -it c925326640a9 bash
 
 # Copy
 docker cp ./client.py 7d27f8c34a84:/vt/src/vitess.io/vitess/examples/local/
-*
+
+docker cp ./test_client_1.go 04c613302de1:/vt/src/vitess.io/vitess/examples/local/
 docker cp ./create_like_ratings_table.sql 7d27f8c34a84:/vt/src/vitess.io/vitess/examples/local/
 ```
 
@@ -33,7 +34,7 @@ sleep 5
 sleep 5
 ./lvtctl.sh ApplySchema -sql "$(cat create_test_table.sql)" test_keyspace
 sleep 5
-./lvtctl.sh RebuildVSchemaGraph
+  ./lvtctl.sh RebuildVSchemaGraph
 sleep 5
 ./vtgate-up.sh
 sleep 5
@@ -74,6 +75,8 @@ docker cp ./create_like_ratings_table.sql c925326640a9:/vt/src/vitess.io/vitess/
 # Cau lenh work
 ## Cau lenh connect vo db
 mysql --user=vt_appdebug --host=localhost --socket=/vt/vtdataroot/vt_0000000100/mysql.sock --port=17100
+
+mysql --port=15306 --host=localhost --socket=/tmp/mysql.sock --user=vt_appdebug
 ## Cau lenh mysql
 show databases;
 use mysql;
