@@ -4,7 +4,7 @@
 # Start docker with port
 docker run -ti -p 15000:15000 -p 15100:15100 -p 15101:15101 -p 15102:15102 -p 15103:15103 -p 15104:15104 -p 17100:17100 -p 17101:17101 -p 17102:17102 -p 17103:17103 -p 17104:17104 vitess/base bash
 
-docker run -t -d -p 15000:15000 -p 15100:15100 -p 15101:15101 -p 15102:15102 -p 15103:15103 -p 15104:15104 -p 17100:17100 -p 17101:17101 -p 17102:17102 -p 17103:17103 -p 17104:17104 vitess/base
+docker run -t -d -p 15000:15000 -p 15100:15100 -p 15101:15101 -p 15102:15102 -p 15103:15103 -p 15104:15104 -p 15200:15200 -p 15201:15201 -p 15202:15202 -p 15203:15203 -p 15204:15204 -p 15300:15300 -p 15301:15301 -p 15302:15302 -p 15303:15303 -p 15304:15304 -p 17100:17100 -p 17101:17101 -p 17102:17102 -p 17103:17103 -p 17104:17104 vitess/base
 
 # Connect to Docker
 docker exec -it c925326640a9 bash
@@ -23,14 +23,23 @@ docker cp ./vschema.json 04c613302de1:/vt/src/vitess.io/vitess/examples/local/
 > Cac cau lenh nay neu chay qua nhanh se gay ra loi vi no la he thong cluster nen no khong the dong bo kip thoi
 
 ```bash
+docker stop  $(docker ps -aq)
+docker rm  $(docker ps -aq)
+
+
+docker run -t -d -p 15000:15000 -p 15100:15100 -p 15101:15101 -p 15102:15102 -p 15103:15103 -p 15104:15104 -p 15200:15200 -p 15201:15201 -p 15202:15202 -p 15203:15203 -p 15204:15204 -p 15300:15300 -p 15301:15301 -p 15302:15302 -p 15303:15303 -p 15304:15304 -p 17100:17100 -p 17101:17101 -p 17102:17102 -p 17103:17103 -p 17104:17104 vitess/base
+
 cd examples/local/
 ./zk-up.sh
 sleep 5
 ./vtctld-up.sh
 sleep 5
-./vttablet-up.sh
+# ./vttablet-up.sh
+./sharded-vttablet-up.sh
 sleep 5
-./lvtctl.sh InitShardMaster -force test_keyspace/0 test-100
+# ./lvtctl.sh InitShardMaster -force test_keyspace/0 test-100
+./lvtctl.sh InitShardMaster -force test_keyspace/-80 test-200
+./lvtctl.sh InitShardMaster -force test_keyspace/80- test-300
 sleep 5
 ./lvtctl.sh ListAllTablets test
 sleep 5
@@ -39,6 +48,8 @@ sleep 5
   ./lvtctl.sh RebuildVSchemaGraph
 sleep 5
 ./vtgate-up.sh
+sleep 5
+./lvtctl.sh ApplyVSchema -vschema "$(cat vschema.json)" test_keyspace
 sleep 5
 ./client.sh
 sleep 5
@@ -93,7 +104,7 @@ mysql --port=15306 --host=localhost --socket=/tmp/mysql.sock --user=mysql_user3 
 
 ./lvtctl.sh ExecuteFetchAsDba test-0000000100 "update like_ratings set is_delete = 1 where id = 100000"
 
-./lvtctl.sh ExecuteFetchAsDba test-0000000203 "update like_ratings set is_delete = 1 where id = 100000 order by user_id DESC"
+./lvtctl.sh ExecuteFetchAsDba test-0000000203 "select * from like_ratings where id between 100000 AND 100100 order by user_id DESC"
 
 go run test_client_1.go --incr 400000
 
