@@ -32,11 +32,11 @@
       "columns": [
         {
           "name": "id",
-          "type": "BIGINT"
+          "type": "INT"
         },
         {
           "name": "user_id",
-          "type": "BIGINT"
+          "type": "INT"
         }
       ]
     },
