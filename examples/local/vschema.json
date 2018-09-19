@@ -31,12 +31,12 @@
       ],
       "columns": [
         {
-          "column": "id",
-          "name": "BIGINT"
+          "name": "id",
+          "type": "BIGINT"
         },
         {
-          "column": "user_id",
-          "name": "BIGINT"
+          "name": "user_id",
+          "type": "BIGINT"
         }
       ]
     },
