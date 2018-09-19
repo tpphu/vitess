@@ -31,12 +31,10 @@
       ],
       "columns": [
         {
-          "name": "id",
-          "type": "INT"
+          "name": "id"
         },
         {
-          "name": "user_id",
-          "type": "INT"
+          "name": "user_id"
         }
       ]
     },
