@@ -75,7 +75,7 @@ nohup sh -c 'while true; do go run test_client_1.go; sleep 1; done >log1.txt' &
 nohup sh -c 'while true; do go run test_client_1.go; sleep 1; done >log2.txt' &
 
 
-docker cp ./test_client_1.go c925326640a9:/vt/src/vitess.io/vitess/examples/local/
+docker cp ./vschema.json bd9eaf616413:/vt/src/vitess.io/vitess/examples/local/
 docker cp ./create_like_ratings_table.sql c925326640a9:/vt/src/vitess.io/vitess/examples/local/
 
 ```
@@ -89,9 +89,13 @@ mysql --port=15306 --host=localhost --socket=/tmp/mysql.sock --user=vt_appdebug
 
 mysql --port=15306 --host=localhost --socket=/tmp/mysql.sock --user=mysql_user3 --default-auth=mysql_native_password
 
-ExecuteFetchAsDba test-0000000100 "select * from like_ratings where id = 100000"
+./lvtctl.sh ExecuteFetchAsDba test-0000000100 "select * from like_ratings where id = 100000"
 
-ExecuteFetchAsDba test-0000000100 "update like_ratings set is_delete = 1 where id = 100000"
+./lvtctl.sh ExecuteFetchAsDba test-0000000100 "update like_ratings set is_delete = 1 where id = 100000"
+
+./lvtctl.sh ExecuteFetchAsDba test-0000000103 "update like_ratings set is_delete = 1 where id = 100000"
+
+go run test_client_1.go --incr 400000
 
 ## Cau lenh mysql
 show databases;

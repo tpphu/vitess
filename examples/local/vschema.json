@@ -27,10 +27,16 @@
         {
           "column": "id",
           "name": "hash"
+        }
+      ],
+      "columns": [
+        {
+          "column": "id",
+          "name": "BIGINT"
         },
         {
           "column": "user_id",
-          "name": "INT"
+          "name": "BIGINT"
         }
       ]
     },
