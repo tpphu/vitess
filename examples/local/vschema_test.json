@@ -1,0 +1,59 @@
+{
+  "sharded": true,
+  "vindexes": {
+    "hash": {
+      "type": "hash"
+    },
+    "numeric": {
+      "type": "numeric"
+    }
+  },
+  "tables": {
+    "messages": {
+      "column_vindexes": [
+        {
+          "column": "page",
+          "name": "hash"
+        }
+      ] 
+    },
+    "ratings": {
+      "column_vindexes": [
+        {
+          "column": "id",
+          "name": "numeric"
+        }
+      ]
+    },
+    "like_ratings": {
+      "column_vindexes": [
+        {
+          "column": "id",
+          "name": "hash"
+        }
+      ],
+      "columns": [
+        {
+          "name": "id",
+          "type": "UINT64"
+        },
+        {
+          "name": "user_id",
+          "type": "UINT64"
+        }
+      ]
+    },
+    "products": {
+      "column_vindexes": [
+        {
+          "column": "id",
+          "name": "numeric"
+        }
+      ],
+      "auto_increment": {
+        "column": "id",
+        "sequence": "seq"
+      }
+    }
+  }
+}
