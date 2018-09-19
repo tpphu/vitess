@@ -21,7 +21,7 @@
       "column_vindexes": [
         {
           "column": "id",
-          "name": "hash"
+          "name": "numeric"
         }
       ]
     },
@@ -29,7 +29,7 @@
       "column_vindexes": [
         {
           "column": "id",
-          "name": "hash"
+          "name": "numeric"
         },
         {
           "column": "user_id",

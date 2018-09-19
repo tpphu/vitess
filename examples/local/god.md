@@ -93,7 +93,7 @@ mysql --port=15306 --host=localhost --socket=/tmp/mysql.sock --user=mysql_user3 
 
 ./lvtctl.sh ExecuteFetchAsDba test-0000000100 "update like_ratings set is_delete = 1 where id = 100000"
 
-./lvtctl.sh ExecuteFetchAsDba test-0000000103 "update like_ratings set is_delete = 1 where id = 100000"
+./lvtctl.sh ExecuteFetchAsDba test-0000000203 "update like_ratings set is_delete = 1 where id = 100000 order by user_id DESC"
 
 go run test_client_1.go --incr 400000
 
