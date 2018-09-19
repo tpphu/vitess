@@ -3,6 +3,9 @@
   "vindexes": {
     "hash": {
       "type": "hash"
+    },
+    "numeric": {
+      "type": "numeric"
     }
   },
   "tables": {
@@ -27,6 +30,10 @@
         {
           "column": "id",
           "name": "hash"
+        },
+        {
+          "column": "user_id",
+          "name": "numeric"
         }
       ],
       "columns": [
