@@ -57,6 +57,8 @@ while true; do ./client.sh; sleep 1; done
 # Chu y la phai co cai keyspace:
 ./lvtctl.sh ApplySchema -sql "$(cat create_like_ratings_table.sql)" test_keyspace
 
+./lvtctl.sh ApplySchema -sql "$(cat create_product_table.sql)" test_keyspace
+
 ./lvtctl.sh ApplySchema -sql "ALTER TABLE messages ADD COLUMN `a_test_column` SMALLINT(6) NOT NULL DEFAULT 0 AFTER `message`" test_keyspace
 
 
@@ -84,6 +86,13 @@ docker cp ./create_like_ratings_table.sql c925326640a9:/vt/src/vitess.io/vitess/
 mysql --user=vt_appdebug --host=localhost --socket=/vt/vtdataroot/vt_0000000100/mysql.sock --port=17100
 
 mysql --port=15306 --host=localhost --socket=/tmp/mysql.sock --user=vt_appdebug
+
+mysql --port=15306 --host=localhost --socket=/tmp/mysql.sock --user=mysql_user3 --default-auth=mysql_native_password
+
+ExecuteFetchAsDba test-0000000100 "select * from like_ratings where id = 100000"
+
+ExecuteFetchAsDba test-0000000100 "update like_ratings set is_delete = 1 where id = 100000"
+
 ## Cau lenh mysql
 show databases;
 use mysql;
