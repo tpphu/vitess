@@ -74,7 +74,7 @@ func main() {
 
 	// Read it back from the master.
 	fmt.Println("Reading from master...")
-	rows, err := db.Query("SELECT page, time_created_ns, message FROM messages ORDER BY id")
+	rows, err := db.Query("SELECT page, time_created_ns, message FROM messages ORDER BY time_created_ns")
 	if err != nil {
 		fmt.Printf("query failed: %v\n", err)
 		os.Exit(1)
