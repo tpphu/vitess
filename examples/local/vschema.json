@@ -31,10 +31,12 @@
       ],
       "columns": [
         {
-          "name": "id"
+          "name": "id",
+          "type": "UINT64"
         },
         {
-          "name": "user_id"
+          "name": "user_id",
+          "type": "UINT64"
         }
       ]
     },
