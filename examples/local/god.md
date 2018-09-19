@@ -140,4 +140,8 @@ mysql --user=vt_appdebug --host=127.0.0.1 --socket=/vt/vtdataroot/vt_0000000100/
 
 
 /usr/sbin/mysqld --defaults-file=/vt/vtdataroot/vt_0000000100/my.cnf --basedir=/usr --datadir=/vt/vtdataroot/vt_0000000100/data --plugin-dir=/usr/lib/mysql/plugin --log-error=/vt/vtdataroot/vt_0000000100/error.log --pid-file=/vt/vtdataroot/vt_0000000100/mysql.pid --socket=/vt/vtdataroot/vt_0000000100/mysql.sock --port=17100
+
+
+/home/phutp/noodle/vitess/go/vt/proto/query/query.pb.go
+
 ```
