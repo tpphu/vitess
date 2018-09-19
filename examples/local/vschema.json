@@ -49,7 +49,11 @@
           "column": "id",
           "name": "numeric"
         }
-      ]
+      ],
+      "auto_increment": {
+        "column": "id",
+        "sequence": "seq"
+      }
     }
   }
 }
