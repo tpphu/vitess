@@ -81,6 +81,9 @@ mysqldump --port=17202 --host=localhost --socket=/vt/vtdataroot/vt_0000000202/my
 mysqldump --port=17202 --host=localhost --socket=/vt/vtdataroot/vt_0000000202/mysql.sock --user=vt_appdebug --skip-add-locks --skip-lock-tables --no-create-info vt_test_keyspace 
 
 
+mysql --port=15306 --host=localhost --socket=/tmp/mysql.sock --user=mysql_user2 -p test_keyspace < db_dump.sql
+
+# Password is: mysql_password
 ```
 
 
