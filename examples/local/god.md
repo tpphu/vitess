@@ -78,6 +78,8 @@ mysql --port=17202 --host=localhost --socket=/vt/vtdataroot/vt_0000000202/mysql.
 
 mysqldump --port=17202 --host=localhost --socket=/vt/vtdataroot/vt_0000000202/mysql.sock --user=vt_appdebug --skip-add-locks --skip-lock-tables --single-transaction vt_test_keyspace 
 
+mysqldump --port=17202 --host=localhost --socket=/vt/vtdataroot/vt_0000000202/mysql.sock --user=vt_appdebug --skip-add-locks --skip-lock-tables --no-create-info vt_test_keyspace 
+
 
 ```
 
