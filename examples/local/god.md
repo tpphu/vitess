@@ -155,4 +155,7 @@ mysql --user=vt_appdebug --host=127.0.0.1 --socket=/vt/vtdataroot/vt_0000000100/
 
 /home/phutp/noodle/vitess/go/vt/proto/query/query.pb.go
 
+
+select * from messages;
+
 ```
