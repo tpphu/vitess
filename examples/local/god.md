@@ -53,6 +53,32 @@ sleep 5
 sleep 5
 ./client.sh
 sleep 5
+
+mysql --port=15306 --host=localhost --socket=/tmp/mysql.sock --user=vt_appdebug
+
+select * from messages order by page;
+select page, time_created_ns, message from messages order by page desc;
+
+# That kho hieu giua ca cau lenh
+# Backup va list backup ^^
+# Backup thi can <cell-uuid>
+./lvtctl.sh Backup test-204
+# Lenh listBackup thi <keyspace/shard>
+./lvtctl.sh ListBackups test_keyspace/-80
+
+
+
+
+# Cau nay loi
+mysqldump --port=15306 --host=localhost --socket=/tmp/mysql.sock --user=vt_appdebug --skip-add-locks --skip-lock-tables --single-transaction test_keyspacee   
+
+# Dung Db no moi work
+
+mysql --port=17202 --host=localhost --socket=/vt/vtdataroot/vt_0000000202/mysql.sock --user=vt_appdebug
+
+mysqldump --port=17202 --host=localhost --socket=/vt/vtdataroot/vt_0000000202/mysql.sock --user=vt_appdebug --skip-add-locks --skip-lock-tables --single-transaction vt_test_keyspace 
+
+
 ```
 
 
@@ -157,5 +183,8 @@ mysql --user=vt_appdebug --host=127.0.0.1 --socket=/vt/vtdataroot/vt_0000000100/
 
 
 select * from messages;
+
+
+vtctl Backup
 
 ```
